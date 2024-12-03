@@ -8,6 +8,8 @@ use App\Http\Controllers\CompraController;
 use App\Http\Controllers\BodegaController;
 
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -16,20 +18,16 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+/*Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);*/
 
-    Route::get('/catalogo/consulta', [CatalogoController::class, 'index'])->name('catalogo.index');
-    Route::get('/catalogo/agregar', [CatalogoController::class, 'create'])->name('catalogo.create'); 
-    Route::post('/catalogo', [CatalogoController::class, 'store'])->name('catalogo.store');
+Route::resource('/clasificacion', ClasificacionController::class)->middleware(['auth', 'verified']);
+Route::resource('/catalogo', CatalogoController::class)->middleware(['auth', 'verified']);
+Route::resource('/compra', CompraController::class)->middleware(['auth', 'verified']);
+Route::resource('/bodega', BodegaController::class)->middleware(['auth', 'verified']);
 
-    // Ruta para Editar (Actualizar)
-    Route::get('/catalogo/actualizar', [CatalogoController::class, 'edit'])->name('catalogo.edit');
 
-    // Ruta para Eliminar (Baja)
-    Route::delete('/catalogo/{catalogo}', [CatalogoController::class, 'destroy'])->name('catalogo.destroy');
-
-    
-
-    Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

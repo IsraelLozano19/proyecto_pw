@@ -19,15 +19,15 @@
 
                     <!-- Botones de acciones -->
                     <div class="mb-4 text-right">
-                        <a href="{{ route('catalogo.create') }}" class="btn btn-custom">Alta</a>
-                        <button class="btn btn-custom">Baja</button>
-                        <button class="btn btn-custom">Cambio</button>
+                        <a href="{{ route('catalogo.create') }}" class="btn btn-custom">Agregar</a>
+                        <button class="btn btn-custom">Eliminar</button>
+                        <button class="btn btn-custom">Actualizar</button>
                     </div>
 
 
                     <!-- Tabla de información -->
                     <div class="table-responsive">
-                        <button class="btn btn-custom">Agregar compra</button>
+                        <button class="btn btn-custom">Agregar a compra</button>
                         <table class="table table-striped table-bordered table-custom">
                             <thead>
                                 <tr>

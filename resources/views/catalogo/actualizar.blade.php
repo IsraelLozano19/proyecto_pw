@@ -31,7 +31,7 @@
                         <div class="mb-3">
                             <label for="clasificacion_id" class="form-label">Clasificación</label>
                             <select id="clasificacion_id" name="clasificacion_id" class="form-control w-100" required>
-                                @foreach ($clasificacions as $clasificacion)
+                                @foreach ($clasificaciones as $clasificacion)
                                     <option value="{{ $clasificacion->id }}" {{ $catalogo->clasificacion_id == $clasificacion->id ? 'selected' : '' }}>
                                         {{ $clasificacion->descripcion }}
                                     </option>

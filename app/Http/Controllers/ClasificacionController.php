@@ -13,6 +13,8 @@ class ClasificacionController extends Controller
     public function index()
     {
         //
+        $clasificaciones=clasificacion::all();
+        return view('clasificaciones.consulta',['clasificaciones'=>$clasificaciones]);
     }
 
     /**
@@ -21,6 +23,8 @@ class ClasificacionController extends Controller
     public function create()
     {
         //
+        $clasificacion=clasificacion::all();
+        return view('clasificaciones.alta');
     }
 
     /**
@@ -29,6 +33,14 @@ class ClasificacionController extends Controller
     public function store(Request $request)
     {
         //
+        $nuevaclasificacion=new clasificacion;
+        $nuevaclasificacion->descripcion=$request->descripcion;
+    
+        
+      
+        $nuevaclasificacion->save();
+        return redirect('/clasificacion');
+
     }
 
     /**
@@ -45,6 +57,9 @@ class ClasificacionController extends Controller
     public function edit(clasificacion $clasificacion)
     {
         //
+        $clasificacioneditar=clasificacion::findorfail($clasificacion);
+        return view('clasificaciones.actualizacion', ['clasificacion' => $clasificacioneditar]);
+
     }
 
     /**
@@ -53,6 +68,13 @@ class ClasificacionController extends Controller
     public function update(Request $request, clasificacion $clasificacion)
     {
         //
+        $nuevaclasificacion=clasificacion::findorfail($clasificacion);
+        $nuevaclasificacion->descripcion=$request->descripcion;
+        
+       
+        $nuevaclasificacion->save();
+        return redirect('/clasificacion')->with('success', 'Se actualizo una clasificacion correctamente.');
+
     }
 
     /**
@@ -61,5 +83,8 @@ class ClasificacionController extends Controller
     public function destroy(clasificacion $clasificacion)
     {
         //
+        clasificacion::destroy($clasificacion);
+        return redirect('/clasificacion');
+
     }
 }
